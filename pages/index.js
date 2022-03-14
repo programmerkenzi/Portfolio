@@ -1,13 +1,8 @@
 import Head from 'next/head'
-import { useSelector, useDispatch } from 'react-redux';
-import { selectIsAuthenticated, setIsAuthenticated } from '../slices/userSlice';
-import { motion, useViewportScroll, useMotionValue, useTransform, motionValue } from "framer-motion"
-import { useEffect, useRef, useState } from 'react';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import gsap from 'gsap';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import Arrow from './api/Arrow';
+import ScrollingHeader from '../components/ScrollingHeader';
 
 const header = ["AboutMe", "Projects_1", "Projects_2", "Contact"];
 
@@ -16,8 +11,9 @@ const header = ["AboutMe", "Projects_1", "Projects_2", "Contact"];
 export default function Home() {
 
   const [offsetX, setOffsetX] = useState(0);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [isBigScreen, setIsBigScreen] = useState(false);
+  const [showUpArrow, setShowUpArrow] = useState(false);
+  const [showDownArrow, setShowDownArrow] = useState(true)
 
   const onClickLeftArrow = () => {
 
@@ -27,17 +23,27 @@ export default function Home() {
     console.log('first',)
   }
 
+  //toggle scroll direction of main content
+  const handleResize = () => {
+    const screenWidth = window.innerWidth
+    if (screenWidth > 768) setIsBigScreen(true)
+    else setIsBigScreen(false)
+
+  }
 
   useEffect(() => {
 
-    const screenWidth = window.innerHeight;
-    console.log('screenWidth', screenWidth);
-    function handleScroll(e) {
+
+    const handleScroll = (e) => {
       e.preventDefault();
       let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       let width = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolled = (winScroll / width) * 100;
-      console.log('scrolled', scrolled)
+      //toggle arrow visibility
+      if (scrolled === 0) setShowUpArrow(false)
+      if (scrolled > 0 && scrolled < 100) setShowUpArrow(true); setShowDownArrow(true);
+      if (scrolled === 100) setShowDownArrow(false)
+      //update scroll position
       setOffsetX(scrolled);
 
     }
@@ -48,41 +54,35 @@ export default function Home() {
   }, [])
 
 
+  useEffect(() => {
+
+    handleResize()
+    window.addEventListener('resize', handleResize, false);
+    return () => window.removeEventListener('resize', handleResize);
+  })
+
 
 
 
 
 
   return (
-    <div className={`h-[${header.length * 100}vh] bg-black`} id="page">
+    <div className={` h-[${header.length * 100}vh] w-screen bg-black`} id="page">
       <Head>
-        <title>Next app template</title>
+        <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
-
-
       </Head >
 
-      <div className="wrapper w-[400vw] h-screen">
-        {/* <Arrow showLeftArrow={showLeftArrow} showRightArrow={showRightArrow} onClickRightArrow={onClickRightArrow} onClickLeftArrow={onClickLeftArrow} /> */}
-        <div className={`fixed w-12 h-[400vh]    pl-2 z-20`} style={{ transform: `translate(0, -${offsetX * (header.length - 1)}vh)` }}>
-          {header.map((item, index) =>
-            <span className=" absolute -rotate-90 text-xl text-white font-serif -translate-y-[50%] h-12 w-12  font-bold opacity-50" style={{ marginTop: `${index === 0 ? 50 : index * 100 + 50}vh` }}> {item}</span>)
-          }
+      <ScrollingHeader offsetX={offsetX} header={header} isBigScreen={isBigScreen} />
+      <div className={`flex flex-1 flex-col md:flex-row `} style={{
+        transform: isBigScreen && `translate(-${offsetX * (header.length - 1)}vw, ${offsetX * (header.length - 1)}vh)`
+      }} >
 
+        <Hero />
+        <Hero />
+        <Hero />
+        <Hero />
 
-
-        </div>
-
-
-
-
-
-        <div className={` text-w h-screen w-full flex flex-1 flex-row`} style={{ transform: `translate(-${offsetX * (header.length - 1)}vw, ${offsetX * (header.length - 1)}vh)` }}>
-          <Hero />
-          <div className="w-screen h-screen   shrink-0 ">2</div>
-          <div className="w-screen h-screen  shrink-0 ">3</div>
-          <div className="w-screen h-screen  shrink-0 ">4</div>
-        </div>
       </div>
 
       {/* <footer classNameName="flex items-center justify-center w-full h-24 border-t">
