@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import Arrow from './api/Arrow';
 import ScrollingHeader from '../components/ScrollingHeader';
+import Skill from '../components/Skill';
 
-const header = ["AboutMe", "Projects_1", "Projects_2", "Contact"];
+
+const header = ["AboutMe", "Skills", "Projects_1", "Projects_2", "Contact"];
 
 
 
@@ -67,7 +69,7 @@ export default function Home() {
 
 
   return (
-    <div className={` h-[${header.length * 100}vh] w-screen bg-black`} id="page">
+    <div className={` h-[${header.length * 100}vh] w-screen bg-black font-serif`} id="page">
       <Head>
         <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
@@ -79,6 +81,7 @@ export default function Home() {
       }} >
 
         <Hero />
+        <Skill />
         <Hero />
         <Hero />
         <Hero />

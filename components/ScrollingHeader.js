@@ -5,7 +5,7 @@ function ScrollingHeader({ offsetX, header, isBigScreen }) {
 
         isBigScreen ?
 
-            <div className={` fixed  w-12  h-[400vh]  pl-2 z-100 bg-black  `
+            <div className={` fixed  w-12  h-[500vh]  pl-2 z-100 bg-black  `
             } style={{ transform: `translate(0, -${offsetX * (header.length - 1)}vh)` }}>
                 {
                     header.map((item, index) =>
@@ -13,7 +13,7 @@ function ScrollingHeader({ offsetX, header, isBigScreen }) {
                 }
 
             </div >
-            : <div className="fixed text-white w-[400vw] h-12 z-100 pt-2 "
+            : <div className="fixed text-white w-[500vw] h-12 z-100 pt-2 "
                 style={{ transform: `translate(${-offsetX * (header.length - 1)}vw,0)` }}>
                 {
                     header.map((item, index) =>

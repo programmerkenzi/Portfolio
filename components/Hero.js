@@ -8,7 +8,7 @@ function Hero() {
                 animate={{ opacity: [1, 0.5] }}
                 transition={{ duration: 5, delay: 6, type: "linear" }}
                 onScroll={() => { console.log('scroll') }}
-                className="w-screen h-screen shrink-0 text-white grid   xl:grid-cols-2 text-base  md:text-2xl  lg:text-2xl  xl:text-3xl bg-black">
+                className="w-screen h-screen shrink-0 text-white grid   xl:grid-cols-2 text-base  md:text-2xl  lg:text-2xl  xl:text-3xl bg-black ">
 
                 <div className="w-full h-full   ">
                     <div className="flex flex-col flex-1 pl-[50%] pt-[50%] translate-x-[-25%] translate-y-[-25%] md:pt-[25%] md:pl-[15%] md:translate-x-0 md:translate-y-0 overflow-hidden ">
@@ -29,11 +29,11 @@ function Hero() {
                         <motion.span
                             animate={{ opacity: [0, 1], x: [50, 0] }}
                             transition={{ duration: 2.5, delay: 3, type: "linear" }}
-                            className="mt-10">Welcome To My Page</motion.span>
+                            className="mt-5 md:mt-10">Welcome To My Page</motion.span>
                         <motion.span
                             animate={{ opacity: [0, 1], x: [50, 0] }}
                             transition={{ duration: 2.5, delay: 5, type: "linear" }}
-                            className="mt-10">I'm a Fullstack Developer</motion.span>
+                            className="mt-5 md:mt-10">I'm a Fullstack Developer</motion.span>
                     </div>
 
                 </div>
