@@ -8,15 +8,16 @@ import Projects from '../components/Projects';
 import { motion } from 'framer-motion'
 import Router from 'next/router'
 
-const header = ["AboutMe", "Skills", "Projects"];
-const elIds = ['hero', 'skills', 'projects',];
+const initHeader = [{ name: 'AboutMe', id: 'hero', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Skills', id: 'skills', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Projects', id: 'projects', height: 0, heightOfTotalPages: 0, width: 0 },];
 
 
 
 export default function Home() {
 
+
+
   const [offsetX, setOffsetX] = useState(0);
-  const [elsWidth, setElsWidth] = useState([]);
+  const [header, setHeader] = useState(initHeader);
   const [inViewportElIndex, setInViewportElIndex] = useState(0)
   const [screenWidth, setScreenWidth] = useState(0);
   const [isBigScreen, setIsBigScreen] = useState(true);
@@ -29,10 +30,29 @@ export default function Home() {
 
   }
 
-  const getAllElementsWidth = () => {
-    const currentElsWidth = elIds.map((item) => getElementWidth(item))
-    return currentElsWidth;
+  const getElementHeight = (elementId) => {
+    const elHeight = document.getElementById(elementId).offsetHeight
+    return elHeight;
 
+  }
+
+
+  const resetHeader = () => {
+    const newHeader = header.map(el => {
+      const elId = el.id;
+      const elHeight = getElementHeight(elId);
+      const elWidth = getElementWidth(elId);
+      const totalHeight = document.documentElement.scrollHeight;
+      const heightOfTotalPages = elHeight / totalHeight;;
+
+      return {
+        ...el,
+        height: elHeight,
+        heightOfTotalPages: heightOfTotalPages,
+        width: elHeight
+      }
+    })
+    setHeader(newHeader)
   }
 
 
@@ -41,13 +61,12 @@ export default function Home() {
 
     const el = document.getElementById('mainContent');
     const elStyles = window.getComputedStyle(el);
-    console.log('elsWidth', elsWidth)
 
     // const elTransformation = new WebKitCSSMatrix(elStyles.transform);
     // const elTranslateX = elTransformation.m41;
-    const elIdsLength = elIds.length;
-    const currentElWidth = getElementWidth(elIds[inViewportElIndex]);
-    console.log('currentElWidth', currentElWidth)
+    const headerLength = header.length;
+    const currentElWidth = getElementWidth(header[inViewportElIndex].id);
+
 
     const key = e.key;
 
@@ -55,7 +74,7 @@ export default function Home() {
       setOffsetX(offsetX + currentElWidth);
       setInViewportElIndex(inViewportElIndex - 1);
     }
-    if (key === "ArrowRight" && inViewportElIndex + 1 <= elIdsLength - 1) {
+    if (key === "ArrowRight" && inViewportElIndex + 1 <= headerLength - 1) {
       setOffsetX(offsetX + - currentElWidth);
       setInViewportElIndex(inViewportElIndex + 1);
 
@@ -63,6 +82,11 @@ export default function Home() {
 
 
 
+  }
+
+  const whileSmallScreenScroll = (index) => {
+    if (isBigScreen) return;
+    return setInViewportElIndex(index)
   }
 
   const onClickLeftArrow = () => {
@@ -94,21 +118,23 @@ export default function Home() {
     const handleScroll = (e) => {
       e.preventDefault();
       let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      let width = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      let scrolled = (winScroll / width) * 100;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolledProgress = (winScroll / height);
       //toggle arrow visibility
-      if (scrolled === 0) setShowUpArrow(false)
-      if (scrolled > 0 && scrolled < 100) setShowUpArrow(true); setShowDownArrow(true);
-      if (scrolled === 100) setShowDownArrow(false)
+      if (scrolledProgress === 0) setShowUpArrow(false)
+      if (scrolledProgress > 0 && scrolledProgress < 100) setShowUpArrow(true); setShowDownArrow(true);
+      if (scrolledProgress === 100) setShowDownArrow(false)
       //update scroll position
-      setOffsetX(scrolled);
+      console.log('scrolledProgress', scrolledProgress)
+      setOffsetX(scrolledProgress);
+      console.log('offsetX', offsetX)
 
     }
 
     // const handleScroll = () => setOffsetX(window.pageXOffset / innerWidth);
     window.addEventListener('scroll', handleScroll, false);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [])
+  }, [offsetX])
 
 
   useEffect(() => {
@@ -118,9 +144,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const currentElsWidth = getAllElementsWidth();
-
-    setElsWidth(currentElsWidth)
+    resetHeader()
 
   }, [screenWidth])
 
@@ -129,29 +153,29 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown, false);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [screenWidth, inViewportElIndex, elsWidth])
+  }, [screenWidth, inViewportElIndex, header])
 
 
 
 
   return (
-    <div className='font-serif bg-black' id="page">
+    <div className='font-serif bg-black md:h-screen md:overflow-hidden' id="page">
       <Head>
         <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head >
 
-      <ScrollingHeader offsetX={offsetX} header={header} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} />
+      <ScrollingHeader offsetX={offsetX} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} header={header} />
       <motion.div
         id='mainContent'
-        className='flex flex-col flex-1 text-gray-300 md:flex-row '
+        className='flex flex-col flex-1 space-y-10 text-gray-300 md:space-y-0 md:flex-row'
         animate={{ transform: isBigScreen && `translateX(${offsetX}px)` }}
         transition={{ bounce: 0, duration: 2 }}
       >
 
-        <Hero />
-        <Skill />
-        <Projects isBigScreen={isBigScreen} />
+        <Hero setInViewportElIndex={whileSmallScreenScroll} />
+        <Skill setInViewportElIndex={whileSmallScreenScroll} />
+        <Projects setInViewportElIndex={whileSmallScreenScroll} isBigScreen={isBigScreen} />
 
 
       </motion.div>

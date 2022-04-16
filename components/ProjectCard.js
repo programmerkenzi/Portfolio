@@ -7,6 +7,8 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen })
     const { name, description, tech, img, img2 } = project;
     const selectedOnSmallScreen = !isBigScreen && selectedId === name;
 
+    console.log('isBigScreen', isBigScreen)
+
     const onClick = (name) => {
         if (selectedId === name) {
             setSelectedId(null)

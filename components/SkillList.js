@@ -7,19 +7,19 @@ function SkillList({ listName, list }) {
 
 
     return (
-        <div className="w-[90vw] h-full md:w-[80vw] text-sm  md:p-10 md:text-lg text-center bg-white p-3 bg-opacity-5 text-gray-300">
+        <div className="w-[90vw] h-full md:w-[80vw] text-sm sm:text-lg  md:p-10 md:text-lg text-center bg-white  bg-opacity-5 text-gray-300">
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="  w-full border-gray-300 border-b-2 md:mb-5 font-bold p-1 md:p-2 text-lg md:text-2xl  ">{listName}</motion.div>
+                className="w-full p-1 text-lg font-bold border-b-2 border-gray-300 md:mb-5 md:p-2 sm:text-xl md:text-2xl">{listName}</motion.div>
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-2 w-full h-full">
+                className="grid w-full h-full grid-cols-2 p-3 sm:p-5">
                 {/* left col */}
-                <motion.div className="w-full h-full flex flex-col ">
+                <motion.div className="flex flex-col w-full h-full ">
                     {
                         list.map((item, index) => {
                             if ((index + 1) % 2 !== 0) {
@@ -29,8 +29,8 @@ function SkillList({ listName, list }) {
                                         whileInView={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1 + 1 }}
                                         viewport={{ once: true }}
-                                        className="m-2  md:m-3 flex flex-row space-x-2" key={index}>
-                                        <Icon className=" h-6 w-6 md:h-10 md:w-10" icon={item.iconName} />
+                                        className="flex flex-row m-2 space-x-2 md:m-3" key={index}>
+                                        <Icon className="w-6 h-6 md:h-10 md:w-10" icon={item.iconName} />
                                         <span>{item.skill}</span>
                                     </motion.div>
                                 )
@@ -38,7 +38,7 @@ function SkillList({ listName, list }) {
                         })}
                 </motion.div>
                 {/* right col */}
-                <motion.div className="w-full h-full flex flex-col">
+                <motion.div className="flex flex-col w-full h-full">
                     {
                         list.map((item, index) => {
                             if ((index + 1) % 2 === 0) {
@@ -48,8 +48,8 @@ function SkillList({ listName, list }) {
                                         whileInView={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1 + 1 }}
                                         viewport={{ once: true }}
-                                        className="m-2  md:m-3 flex flex-row space-x-2" key={index}>
-                                        <Icon className=" h-6 w-6 md:h-10 md:w-10" icon={item.iconName} />
+                                        className="flex flex-row m-2 space-x-2 md:m-3" key={index}>
+                                        <Icon className="w-6 h-6 md:h-10 md:w-10" icon={item.iconName} />
                                         <span>{item.skill}</span>
                                     </motion.div>
                                 )

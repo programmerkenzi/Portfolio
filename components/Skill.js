@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 import SkillList from './SkillList';
 
@@ -24,9 +25,12 @@ const backend = [
 
 
 
-function Skill() {
+function Skill({ setInViewportElIndex }) {
     return (
-        <div className="h-screen w-screen shrink-0 grid grid-rows-2   justify-center p-20  ">
+        <motion.div
+            whileInView={() => setInViewportElIndex(1)}
+            id='skills'
+            className="grid justify-center w-screen h-screen grid-rows-2 p-12 shrink-0 ">
 
             <SkillList listName="Frontend" list={frontend} />
 
@@ -38,7 +42,7 @@ function Skill() {
 
 
 
-        </div>
+        </motion.div>
     )
 }
 

@@ -17,13 +17,14 @@ const draw = {
     }
 };
 
-function Hero() {
+function Hero({ setInViewportElIndex }) {
     return (
         <AnimatePresence>
             <motion.div
                 id="hero"
-                onScroll={() => { console.log('scroll') }}
-                className="grid w-screen h-screen p-10 text-base shrink-0 xl:grid-cols-2 md:text-2xl lg:text-2xl xl:text-3xl ">
+                whileInView={() => setInViewportElIndex(0)}
+
+                className="grid w-screen h-screen p-10 mb-10 text-base shrink-0 xl:grid-cols-2 md:text-2xl lg:text-2xl xl:text-3xl ">
 
                 <div className="w-full h-full ">
                     <div className="flex flex-col flex-1 pl-[50%] pt-[50%] translate-x-[-25%] translate-y-[-25%] md:pt-[25%] md:pl-[15%] md:translate-x-0 md:translate-y-0 overflow-hidden ">
