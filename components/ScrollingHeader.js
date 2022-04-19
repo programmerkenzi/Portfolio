@@ -4,7 +4,6 @@ function ScrollingHeader({ offsetX, isBigScreen, inViewportElIndex, header }) {
 
     const headerWidth = (header.length - 1) * 100;
 
-    console.log('headerWidth', headerWidth)
 
     const headerWithVw = header.map(item => {
         return {
@@ -33,7 +32,7 @@ function ScrollingHeader({ offsetX, isBigScreen, inViewportElIndex, header }) {
                 }
 
             </motion.div >
-            : <motion.div className="fixed z-10 flex flex-row h-12 pt-2 text-white bg-black bg-opacity-75 z-100 "
+            : <motion.div className="fixed z-10 flex flex-row h-12 pt-4 text-white bg-black bg-opacity-75 z-100 "
 
                 animate={{ transform: `translateX(-${inViewportElIndex * 100}vw)`, opacity: [0, 1] }}
 

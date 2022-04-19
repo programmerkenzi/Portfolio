@@ -7,6 +7,7 @@ import Skill from '../components/Skill';
 import Projects from '../components/Projects';
 import { motion } from 'framer-motion'
 import Router from 'next/router'
+import Menu from '../components/Menu';
 
 const initHeader = [{ name: 'AboutMe', id: 'hero', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Skills', id: 'skills', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Projects', id: 'projects', height: 0, heightOfTotalPages: 0, width: 0 },];
 
@@ -166,6 +167,8 @@ export default function Home() {
       </Head >
 
       <ScrollingHeader offsetX={offsetX} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} header={header} />
+      <Menu header={header} isBigScreen={isBigScreen} setInViewportElIndex={setInViewportElIndex} />
+
       <motion.div
         id='mainContent'
         className='flex flex-col flex-1 space-y-10 text-gray-300 md:space-y-0 md:flex-row'
