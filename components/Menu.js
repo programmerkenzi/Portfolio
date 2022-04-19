@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import MenuItem from './MenuItem';
 
 
-function Menu({ header, isBigScreen, setInViewportElIndex, }) {
+function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
@@ -71,9 +71,10 @@ function Menu({ header, isBigScreen, setInViewportElIndex, }) {
                                 id={item.id}
                                 index={index}
                                 setInViewportElIndex={setInViewportElIndex}
+                                inViewportElIndex={inViewportElIndex}
                                 setIsOpen={setIsOpen}
-                                setSelectedIndex={setSelectedIndex}
-                                selectedIndex={selectedIndex} />)
+
+                            />)
                     }
 
                 </motion.div>

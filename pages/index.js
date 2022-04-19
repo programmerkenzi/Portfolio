@@ -108,6 +108,7 @@ export default function Home() {
     setOffsetX(0);
     setInViewportElIndex(0)
 
+
     if (newScreenWidth > 768) setIsBigScreen(true)
     else setIsBigScreen(false)
 
@@ -167,7 +168,7 @@ export default function Home() {
       </Head >
 
       <ScrollingHeader offsetX={offsetX} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} header={header} />
-      <Menu header={header} isBigScreen={isBigScreen} setInViewportElIndex={setInViewportElIndex} />
+      <Menu header={header} isBigScreen={isBigScreen} setInViewportElIndex={setInViewportElIndex} inViewportElIndex={inViewportElIndex} />
 
       <motion.div
         id='mainContent'

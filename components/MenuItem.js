@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
-function MenuItem({ title, variants, isHovering, setIsHovering, onClickItem, id, setInViewportElIndex, index, setIsOpen, selectedIndex, setSelectedIndex }) {
+function MenuItem({ title, variants, isHovering, setIsHovering, onClickItem, id, setInViewportElIndex, index, setIsOpen, inViewportElIndex }) {
 
 
 
@@ -16,12 +16,12 @@ function MenuItem({ title, variants, isHovering, setIsHovering, onClickItem, id,
     const onClick = () => {
         setInViewportElIndex(index)
         setIsOpen(false);
-        setSelectedIndex(index);
         scrollTo();
 
     }
 
-    console.log('selectedIndex===index', selectedIndex === index)
+    console.log('setInViewportElIndex :>> ', setInViewportElIndex);
+
 
     return (
         <AnimatePresence>
@@ -34,7 +34,7 @@ function MenuItem({ title, variants, isHovering, setIsHovering, onClickItem, id,
                 <motion.div
                     whileHover={{ scale: 1.1, }}
 
-                    animate={{ opacity: selectedIndex === index ? 1 : 0.6 }}
+                    animate={{ opacity: inViewportElIndex === index ? 1 : 0.6 }}
 
                     onClick={() => onClick()}
                 >
