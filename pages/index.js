@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
-import Arrow from './api/Arrow';
+
 import ScrollingHeader from '../components/ScrollingHeader';
 import Skill from '../components/Skill';
 import Projects from '../components/Projects';
 import { motion } from 'framer-motion'
 import Router from 'next/router'
 import Menu from '../components/Menu';
+import Arrow from '../components/Arrow';
 
 const initHeader = [{ name: 'AboutMe', id: 'hero', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Skills', id: 'skills', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Projects', id: 'projects', height: 0, heightOfTotalPages: 0, width: 0 },];
 
@@ -22,8 +23,13 @@ export default function Home() {
   const [inViewportElIndex, setInViewportElIndex] = useState(0)
   const [screenWidth, setScreenWidth] = useState(0);
   const [isBigScreen, setIsBigScreen] = useState(true);
-  const [showUpArrow, setShowUpArrow] = useState(false);
-  const [showDownArrow, setShowDownArrow] = useState(true)
+  const [showRightArrow, setShowRightArrow] = useState(false);
+  const [showLeftArrow, setShowLeftArrow] = useState(true)
+
+
+  const [hireMeBtnInTop, setHireMeBtnInTop] = useState(false)
+
+
 
   const getElementWidth = (elementId) => {
     const elWidth = document.getElementById(elementId).offsetWidth
@@ -109,7 +115,7 @@ export default function Home() {
     setInViewportElIndex(0)
 
 
-    if (newScreenWidth > 768) setIsBigScreen(true)
+    if (newScreenWidth > 1080) setIsBigScreen(true)
     else setIsBigScreen(false)
 
   }
@@ -123,13 +129,13 @@ export default function Home() {
       let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolledProgress = (winScroll / height);
       //toggle arrow visibility
-      if (scrolledProgress === 0) setShowUpArrow(false)
-      if (scrolledProgress > 0 && scrolledProgress < 100) setShowUpArrow(true); setShowDownArrow(true);
-      if (scrolledProgress === 100) setShowDownArrow(false)
+      if (scrolledProgress === 0) setShowRightArrow(false)
+      if (scrolledProgress > 0 && scrolledProgress < 100) setShowRightArrow(true); setShowLeftArrow(true);
+      if (scrolledProgress === 100) setShowLeftArrow(false)
       //update scroll position
-      console.log('scrolledProgress', scrolledProgress)
+
       setOffsetX(scrolledProgress);
-      console.log('offsetX', offsetX)
+
 
     }
 
@@ -158,10 +164,17 @@ export default function Home() {
   }, [screenWidth, inViewportElIndex, header])
 
 
+  useEffect(() => {
+    if (inViewportElIndex === 0) setHireMeBtnInTop(false)
+    else setHireMeBtnInTop(true)
+
+  }, [inViewportElIndex])
+
+
 
 
   return (
-    <div className='font-serif bg-black md:h-screen md:overflow-hidden' id="page">
+    <div className='font-serif bg-black lg:h-screen md:overflow-hidden' id="page">
       <Head>
         <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
@@ -172,14 +185,15 @@ export default function Home() {
 
       <motion.div
         id='mainContent'
-        className='flex flex-col flex-1 space-y-10 text-gray-300 md:space-y-0 md:flex-row'
+        className='flex flex-col flex-1 space-y-10 text-gray-300 lg:space-y-0 lg:flex-row'
         animate={{ transform: isBigScreen && `translateX(${offsetX}px)` }}
         transition={{ bounce: 0, duration: 2 }}
       >
 
-        <Hero setInViewportElIndex={whileSmallScreenScroll} />
+        <Hero setInViewportElIndex={whileSmallScreenScroll} isBigScreen={isBigScreen} hireMeBtnInTop={hireMeBtnInTop} />
         <Skill setInViewportElIndex={whileSmallScreenScroll} />
-        <Projects setInViewportElIndex={whileSmallScreenScroll} isBigScreen={isBigScreen} />
+        <Projects setInViewportElIndex={whileSmallScreenScroll} isBigScreen={isBigScreen} screenWidth={screenWidth} />
+
 
 
       </motion.div>
