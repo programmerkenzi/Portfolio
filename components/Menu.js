@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import MenuItem from './MenuItem';
+import Contact from './Contact';
 
 
 function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) {
@@ -31,16 +32,16 @@ function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) 
 
 
 
-            className={`fixed transition transform z-10   cursor-pointer top-0 right-0 p-5 `}>
+            className={`fixed transition transform z-10   cursor-pointer top-0 right-0 p-5 md:rounded-tl-lg md:rounded-bl-lg `}>
 
-
+            {/* toggle btn */}
             <motion.svg
                 onClick={() => toggleMenu()}
                 animate={{
                     color: isOpen ? 'rgb(0 0 0)' : 'rgb(209 213 219)',
                 }}
 
-                xmlns="http://www.w3.org/2000/svg" className={` h-7 w-7 md:h-10 md:w-10  absolute  top-2 right-2  `} viewBox="0 0 20 20" fill="currentColor">
+                xmlns="http://www.w3.org/2000/svg" className={` h-5 w-5 md:h-8 md:w-8  absolute  top-2 right-2  `} viewBox="0 0 20 20" fill="currentColor">
                 {
                     isOpen ?
 
@@ -52,6 +53,8 @@ function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) 
             </motion.svg>
 
 
+
+            {/* menu */}
             {isOpen &&
                 <motion.div
                     animate={{ opacity: [0, 1] }}
@@ -60,22 +63,27 @@ function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) 
 
 
                 >
-                    {
-                        header.map((item, index) =>
-                            <MenuItem
-                                title={item.name}
-                                key={index + item.name}
-                                variants={item}
-                                isHovering={isHovering}
-                                setIsHovering={setIsHovering}
-                                id={item.id}
-                                index={index}
-                                setInViewportElIndex={setInViewportElIndex}
-                                inViewportElIndex={inViewportElIndex}
-                                setIsOpen={setIsOpen}
+                    <div className='flex flex-col flex-1 space-y-10'>
 
-                            />)
-                    }
+                        {
+                            header.map((item, index) =>
+                                <MenuItem
+                                    title={item.name}
+                                    key={index + item.name}
+                                    variants={item}
+                                    isHovering={isHovering}
+                                    setIsHovering={setIsHovering}
+                                    id={item.id}
+                                    index={index}
+                                    setInViewportElIndex={setInViewportElIndex}
+                                    inViewportElIndex={inViewportElIndex}
+                                    setIsOpen={setIsOpen}
+
+                                />)
+                        }
+                    </div>
+
+                    <Contact />
 
                 </motion.div>
             }

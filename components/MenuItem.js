@@ -20,7 +20,6 @@ function MenuItem({ title, variants, isHovering, setIsHovering, onClickItem, id,
 
     }
 
-    console.log('setInViewportElIndex :>> ', setInViewportElIndex);
 
 
     return (
