@@ -4,49 +4,47 @@ import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import ProjectDetailsCard from './ProjectDetailsCard';
 
 const projects = [{
-    name: 'chat app',
-    description: 'Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
+    name: 'Chat App',
+    description: 'This is my first full stack chat app project I made from scratch for previous work, download the apk give it a try and have fun!',
+    loginInfo: [
+        { username: 'Kenzi', password: '123456' }, { username: 'Alice', password: '123456' },
+    ],
+    tech: 'React Native Expo, Node, Express, MongoDB, Socket.io',
+    type: 'mobile',
+    img: '/images/chatApp-1.png',
+    img2: '/images/chatApp-2.png',
+    btn: [{ title: 'Download', url: '/apk/chat-app.apk' },]
 }, {
-    name: 'chat app2',
-    description: 'Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
+    name: 'Airbnb Clone',
+    description: 'This is a responsive website that clone from airbnb website. ',
+    tech: 'NextJs, Firebase',
+    type: 'web',
+    img: '/images/airbnb-clone-1.png',
+    img2: '/images/airbnb-clone-2.png',
+    btn: [{ title: 'View', url: 'https://airbnb-clone-ten-eosin.vercel.app' },]
 }, {
-    name: 'chat app3',
-    description: ' Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
+    name: 'Uber Clone',
+    description: ' This is a mobile app that clone from uber app, download the apk give it a try and have fun!',
+    tech: 'React Native Expo, Firebase',
+    type: 'mobile',
+    img: '/images/uber-clone-1.png',
+    img2: '/images/uber-clone-2.png',
+    btn: [{ title: 'Download', url: '/apk/uber-clone.apk' },]
 
 }, {
-    name: 'chat app4',
-    description: 'Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
-}, {
-    name: 'chat app5',
-    description: 'Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
-}, {
-    name: 'chat app6',
-    description: 'Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit.',
-    tech: 'React, Node, Express, MongoDB',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png',
-    img2: 'http://webmeup.com/upload/blog/lead-image-105.png'
+    name: 'Metaverse Chat App',
+    description: 'This is a responsive website that can login with your metamask wallet and chat with other people. ',
+    tech: 'NextJs, Moralis',
+    img: '/images/metaverse-chat-1.png',
+    img2: '/images/metaverse-chat-2.png',
+    btn: [{ title: 'View', url: 'https://metaverse-challenge-two-lemon.vercel.app' },]
 },]
 
 function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
 
     const [selectedId, setSelectedId] = useState(null);
 
-    const isNotMobile = screenWidth > 768;
+    const isNotMobile = screenWidth >= 768;
 
     return (
         <AnimateSharedLayout type="crossfade" >
@@ -58,12 +56,13 @@ function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
                     whileInView={(i) => setInViewportElIndex(2)}
 
                     id='projects'
-                    className='w-screen  lg:h-screen  p-12  md:px-[60px] grid-cols-1  gap-3   md:flex-none grid-flow-row    grid lg:grid-cols-3 md:grid-cols-2  lg:gap-7 md:gap-5     cursor-pointer '
+                    className='w-screen  lg:h-screen p-5  sm:p-12  md:px-[60px] grid-cols-1  gap-3   md:flex-none grid-flow-row    grid lg:grid-cols-3 md:grid-cols-2  lg:gap-7 md:gap-5     '
                 >
 
                     {projects.map((project, index) => { return <ProjectCard key={index} index={index} project={project} selectedId={selectedId} setSelectedId={setSelectedId} isBigScreen={isBigScreen} isNotMobile={isNotMobile} /> })}
 
-                    {selectedId && isBigScreen && <ProjectDetailsCard id={selectedId} setSelectedId={setSelectedId} projects={projects} />}
+                    {selectedId && isNotMobile && <ProjectDetailsCard id={selectedId} setSelectedId={setSelectedId} projects={projects} isBigScreen={isBigScreen} />}
+
                 </motion.div>
 
             </AnimatePresence>
