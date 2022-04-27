@@ -51,7 +51,7 @@ function HireMeBtn({ isBigScreen }) {
                 href='mailto:a23g32@gmail.com?'
 
 
-                className="absolute text-xl md:text-2xl lg:text-4xl top-[50%] -translate-y-[50%] ">Hire Me</motion.a>
+                className="absolute text-xl md:text-xl lg:text-2xl top-[50%] -translate-y-[50%] ">Hire Me</motion.a>
         </motion.div>
 
     )
