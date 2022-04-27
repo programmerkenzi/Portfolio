@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import PrimaryBtn from './PrimaryBtn';
 
 
-function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, isNotMobile }) {
+function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, isNotSmallScreen }) {
     const [isHover, setIsHover] = useState(false)
     const { name, description, tech, img, img2, btn, type, loginInfo } = project;
     const selectedOnSmallScreen = !isBigScreen && selectedId === name;
@@ -27,13 +27,13 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             onClick={() => onClick(name)}
             layoutId={name}
             whileInView={{ opacity: [0, 1] }}
-            animate={{ minHeight: '40vh', maxHeight: `${selectedOnSmallScreen && !isNotMobile ? '100vh' : !isNotMobile ? '60vh' : isNotMobile ? '45vh' : '100%'}` }}
+            animate={{ minHeight: '40vh', maxHeight: `${selectedOnSmallScreen && !isNotSmallScreen ? '100vh' : !isNotSmallScreen ? '60vh' : isNotSmallScreen ? '45vh' : '100%'}` }}
             viewport={{ once: true }}
         >
 
             <motion.div
                 animate={{ scale: isHover && isBigScreen ? 1.05 : 1 }}
-                className={`h-full ${selectedOnSmallScreen && !isNotMobile ? 'row-span-1 p-2' : 'row-span-2'} overflow-hidden `}
+                className={`h-full ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-1 p-2' : 'row-span-2'} overflow-hidden `}
             >
 
                 <motion.img
@@ -43,7 +43,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             </motion.div>
 
 
-            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotMobile ? 'row-span-2' : 'row-span-1'}   w-full  p-2  md:p-5   md:h-[35%] lg:h-1/2 `}>
+            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-2' : 'row-span-1'}   w-full  p-2  md:p-5   md:h-[35%] lg:h-1/2 `}>
                 {!selectedOnSmallScreen ?
                     <div className='m-auto'>
                         <p className="mb-2 font-semibold text-center text-white text-md sm:text-lg md:text-xl md:mb-5 lg:text-2xl ">{name}</p>

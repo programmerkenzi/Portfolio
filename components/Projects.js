@@ -44,7 +44,7 @@ function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
 
     const [selectedId, setSelectedId] = useState(null);
 
-    const isNotMobile = screenWidth >= 768;
+    const isNotSmallScreen = screenWidth >= 768;
 
     return (
         <AnimateSharedLayout type="crossfade" >
@@ -59,9 +59,9 @@ function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
                     className='w-screen  lg:h-screen p-5  sm:p-12  md:px-[60px] grid-cols-1  gap-3   md:flex-none grid-flow-row    grid lg:grid-cols-3 md:grid-cols-2  lg:gap-7 md:gap-5     '
                 >
 
-                    {projects.map((project, index) => { return <ProjectCard key={index} index={index} project={project} selectedId={selectedId} setSelectedId={setSelectedId} isBigScreen={isBigScreen} isNotMobile={isNotMobile} /> })}
+                    {projects.map((project, index) => { return <ProjectCard key={index} index={index} project={project} selectedId={selectedId} setSelectedId={setSelectedId} isBigScreen={isBigScreen} isNotSmallScreen={isNotSmallScreen} /> })}
 
-                    {selectedId && isNotMobile && <ProjectDetailsCard id={selectedId} setSelectedId={setSelectedId} projects={projects} isBigScreen={isBigScreen} />}
+                    {selectedId && isNotSmallScreen && <ProjectDetailsCard id={selectedId} setSelectedId={setSelectedId} projects={projects} isBigScreen={isBigScreen} />}
 
                 </motion.div>
 

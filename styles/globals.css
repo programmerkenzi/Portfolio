@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
+    @apply px-4 py-2 transition duration-100 ease-out transform border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100;
   }
 }
 
@@ -22,4 +22,5 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  background-color: black;
 }

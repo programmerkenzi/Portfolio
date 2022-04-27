@@ -22,7 +22,7 @@ function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
 
             >
 
-                <div className="w-full h-full overflow-hidden bg-gray-500 rounded-md md:p-5 lg:grid lg:grid-cols-1 lg:grid-rows-2 bg-opacity-5">
+                <div className="w-full h-full bg-gray-500 rounded-md -hidden md:p-5 lg:grid lg:grid-cols-1 lg:grid-rows-2 bg-opacity-5">
                     {/* close button */}
                     <div
                         onClick={() => setSelectedId(null)}
@@ -33,7 +33,7 @@ function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
                         </svg>
                     </div>
                     {/* image */}
-                    <div className="w-full h-full overflow-hidden transition-all transform lg:row-span-2 ">
+                    <div className="w-full h-full transition-all transform -hidden lg:row-span-2 ">
 
                         <motion.img src={img2} className={` h-[99%]   m-auto md:rounded-lg md:shadow-lg md:shadow-gray-700   `} />
                     </div>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
-
+import dynamic from 'next/dynamic'
 import ScrollingHeader from '../components/ScrollingHeader';
 import Skill from '../components/Skill';
 import Projects from '../components/Projects';
@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 import Router from 'next/router'
 import Menu from '../components/Menu';
 import Arrow from '../components/Arrow';
+import { isMobile } from 'react-device-detect';
 
 const initHeader = [{ name: 'AboutMe', id: 'hero', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Skills', id: 'skills', height: 0, heightOfTotalPages: 0, width: 0 }, { name: 'Projects', id: 'projects', height: 0, heightOfTotalPages: 0, width: 0 },];
 
@@ -25,9 +26,12 @@ export default function Home() {
   const [isBigScreen, setIsBigScreen] = useState(true);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(true)
+  const [deviceIsMobile, setDeviceIsMobile] = useState(isMobile);
 
 
   const [hireMeBtnInTop, setHireMeBtnInTop] = useState(false)
+
+
 
 
 
@@ -113,9 +117,9 @@ export default function Home() {
     setScreenWidth(newScreenWidth)
     setOffsetX(0);
     setInViewportElIndex(0)
+    setDeviceIsMobile(isMobile)
 
-
-    if (newScreenWidth > 1080) setIsBigScreen(true)
+    if (newScreenWidth >= 1024 && !deviceIsMobile) setIsBigScreen(true)
     else setIsBigScreen(false)
 
   }
@@ -174,18 +178,18 @@ export default function Home() {
 
 
   return (
-    <div className='font-serif bg-black lg:h-screen md:overflow-hidden' id="page">
+    <div className='font-serif bg-black lg:h-screen md:-hidden' id="page">
       <Head>
         <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head >
 
-      <ScrollingHeader offsetX={offsetX} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} header={header} />
+      <ScrollingHeader offsetX={offsetX} inViewportElIndex={inViewportElIndex} isBigScreen={isBigScreen} header={header} deviceIsMobile={deviceIsMobile} />
       <Menu header={header} isBigScreen={isBigScreen} setInViewportElIndex={setInViewportElIndex} inViewportElIndex={inViewportElIndex} />
 
       <motion.div
         id='mainContent'
-        className='flex flex-col flex-1 space-y-10 text-gray-300 lg:space-y-0 lg:flex-row'
+        className={`flex flex-col flex-1 space-y-10    text-gray-300   ${isBigScreen && 'lg:flex-row lg:space-y-0'} `}
         animate={{ transform: isBigScreen && `translateX(${offsetX}px)` }}
         transition={{ bounce: 0, duration: 2 }}
       >

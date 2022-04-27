@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-function ScrollingHeader({ offsetX, isBigScreen, inViewportElIndex, header }) {
+function ScrollingHeader({ offsetX, isBigScreen, inViewportElIndex, header, deviceIsMobile }) {
 
     const headerWidth = (header.length - 1) * 100;
 
