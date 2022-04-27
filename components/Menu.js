@@ -69,7 +69,7 @@ function Menu({ header, isBigScreen, setInViewportElIndex, inViewportElIndex }) 
                             header.map((item, index) =>
                                 <MenuItem
                                     title={item.name}
-                                    key={index + item.name}
+                                    key={item.name}
                                     variants={item}
                                     isHovering={isHovering}
                                     setIsHovering={setIsHovering}
