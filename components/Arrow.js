@@ -25,7 +25,7 @@ function Arrow({ showLeftArrow, showRightArrow }) {
                     </motion.svg>
                 </motion.div>
 
-                <p className='text-base lg:text-lg'>Press keyboard to scroll page</p>
+                <p className='text-base lg:text-lg'>Press keyboard arrows to scroll page</p>
 
                 <motion.div className="">
                     <span className="text-transparent hover:text-white"></span>
