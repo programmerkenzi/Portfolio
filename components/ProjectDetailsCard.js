@@ -18,7 +18,7 @@ function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
 
             <div
 
-                className="  grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 w-[60%] lg:w-[80%] rounded-md h-[80%] bg-black  lg:h-[60%]  ml-[calc(50%-48px)] -translate-x-[50%] mt-[50vh] lg:-translate-y-[50%] md:-translate-y-[calc(50%-48px)] "
+                className="  grid grid-cols-1 grid-rows-2 lg:grid-cols-2 md:grid-rows-2 lg:grid-rows-1 w-[60%] lg:w-[80%] rounded-md h-[80%] bg-black  lg:h-[60%]  ml-[calc(50%-48px)] -translate-x-[50%] mt-[50vh] lg:-translate-y-[50%] md:-translate-y-[calc(50%-48px)] "
 
             >
 
@@ -37,22 +37,23 @@ function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
 
                         <motion.img src={img2} className={` h-[99%]   m-auto md:rounded-lg md:shadow-lg md:shadow-gray-700   `} />
                     </div>
+
+
+                </div>
+                <motion.div className="relative flex-col w-full row-span-2 p-5 space-y-3 lg:space-y-5">
+                    <p className="text-2xl font-bold text-center">{name}</p>
+                    <p className="text-xl font-bold underline track">Description</p>
+                    <p className="text-lg leading-relaxed tracking-wide ">{description}</p>
+                    <p className="text-xl font-bold underline">Frameworks and technics</p>
+                    <p className="text-lg leading-relaxed tracking-wide ">{tech}</p>
                     {/*  button */}
-                    <div className=" fixed flex flex-row items-center justify-center w-full row-span-[0.5] bottom-[5%] md:bottom-[5%] lg:relative lg:bottom-0 lg:space-y-5 lg:p-10 lg:flex-col ">
+                    <div className="z-50 flex flex-row items-end justify-center w-full space-x-6 h-1/5 md:mt-8 md:space-x-8 absolute bottom-[5%] left-0">
                         {/* btn */}
 
 
                         {btn.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} name={name} />)}
 
                     </div>
-
-                </div>
-                <motion.div className="flex-col w-full row-span-2 p-5 space-y-3 lg:space-y-5">
-                    <p className="text-2xl font-bold text-center">{name}</p>
-                    <p className="text-xl font-bold underline track">Description</p>
-                    <p className="text-lg leading-relaxed tracking-wide ">{description}</p>
-                    <p className="text-xl font-bold underline">Frameworks and technics</p>
-                    <p className="text-lg leading-relaxed tracking-wide ">{tech}</p>
                 </motion.div>
             </div>
 
