@@ -178,7 +178,7 @@ export default function Home() {
 
 
   return (
-    <div className='font-serif bg-black lg:h-screen md:-hidden' id="page">
+    <div className={`font-serif bg-black ${isBigScreen && 'h-screen '} ${!isMobile && 'overflow-hidden'}  `} id="page">
       <Head>
         <title>Kenzi's Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
