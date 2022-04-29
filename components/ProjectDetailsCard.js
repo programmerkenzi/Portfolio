@@ -22,7 +22,7 @@ function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
 
             >
 
-                <div className="w-full h-full bg-gray-500 rounded-md -hidden md:p-5 lg:grid lg:grid-cols-1 lg:grid-rows-2 bg-opacity-5">
+                <div className="w-full h-full bg-white rounded-md -hidden md:p-5 lg:grid lg:grid-cols-1 lg:grid-rows-2 bg-opacity-10">
                     {/* close button */}
                     <div
                         onClick={() => setSelectedId(null)}

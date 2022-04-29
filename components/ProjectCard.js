@@ -21,7 +21,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
     return (
 
         <motion.div
-            className={`relative grid grid-cols-1 grid-rows-2  ${(type === 'mobile') && 'md:p-5 p-2'} overflow-hidden bg-white rounded-lg cursor-pointer lg:h-full bg-opacity-5 shrink-0 hover:shadow-lg`}
+            className={`relative grid grid-cols-1 grid-rows-2  ${(type === 'mobile') && 'md:p-5 p-2'} overflow-hidden bg-white rounded-lg cursor-pointer lg:h-full bg-opacity-10 shrink-0 hover:shadow-lg`}
             onHoverStart={() => setIsHover(true)}
             onHoverEnd={() => setIsHover(false)}
             onClick={() => onClick(name)}
@@ -43,7 +43,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             </motion.div>
 
 
-            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-2' : 'row-span-1'}   w-full  p-2  md:p-5   md:h-[35%] lg:h-1/2 `}>
+            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-2 ' : 'row-span-1 p-2 md:p-5'}   w-full     md:h-[35%] lg:h-1/2 `}>
                 {!selectedOnSmallScreen ?
                     <div className='m-auto'>
                         <p className="mb-2 font-semibold text-center text-white text-md sm:text-lg md:text-xl md:mb-5 lg:text-2xl ">{name}</p>
@@ -79,7 +79,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
                         </div>
 
                         {/* btn */}
-                        <div className="z-50 flex flex-row items-center justify-center w-full space-x-6 h-1/5 md:mt-8 md:space-x-8">
+                        <div className="z-50 flex flex-row items-center justify-center w-full space-x-6 h-1/5 md:mt-8 md:space-x-8 ">
 
                             {btn.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} />)}
                         </div>

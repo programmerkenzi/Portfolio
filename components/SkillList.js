@@ -7,7 +7,7 @@ function SkillList({ listName, list }) {
 
 
     return (
-        <div className="w-[90vw] h-full md:w-[80vw] text-sm sm:text-lg  md:p-10 md:text-lg text-center bg-white  bg-opacity-5 text-gray-300">
+        <div className="w-[90vw] h-full md:w-[80vw] text-sm sm:text-lg  md:p-10 md:text-lg text-center bg-white  bg-opacity-10 text-gray-300">
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
