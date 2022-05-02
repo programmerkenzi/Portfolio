@@ -13,6 +13,7 @@ function Hero({ setInViewportElIndex, isBigScreen }) {
                 <Arrow />
             }
             <motion.div
+                key="hero"
                 id="hero"
                 whileInView={() => setInViewportElIndex(0)}
 

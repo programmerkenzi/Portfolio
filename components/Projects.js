@@ -54,7 +54,7 @@ function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
 
                 <motion.div
                     whileInView={(i) => setInViewportElIndex(2)}
-
+                    key='projects'
                     id='projects'
                     className='w-screen  lg:h-screen p-5  sm:p-12  md:px-[60px] grid-cols-1  gap-3   md:flex-none grid-flow-row    grid lg:grid-cols-3 md:grid-cols-2  lg:gap-7 md:gap-5     '
                 >

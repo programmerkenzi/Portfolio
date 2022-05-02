@@ -29,6 +29,7 @@ function Skill({ setInViewportElIndex }) {
     return (
         <motion.div
             whileInView={() => setInViewportElIndex(1)}
+            key='skill'
             id='skills'
             className="grid justify-center w-screen h-screen grid-rows-2 p-12 shrink-0 ">
 
