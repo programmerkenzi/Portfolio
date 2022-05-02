@@ -80,12 +80,12 @@ export default function Home() {
 
 
     const key = e.key;
-
-    if (key === "ArrowLeft" && inViewportElIndex - 1 >= 0) {
+    console.log('key', key)
+    if ((key === "ArrowLeft" || key === "a") && inViewportElIndex - 1 >= 0) {
       setOffsetX(offsetX + currentElWidth);
       setInViewportElIndex(inViewportElIndex - 1);
     }
-    if (key === "ArrowRight" && inViewportElIndex + 1 <= headerLength - 1) {
+    if ((key === "ArrowRight" || key === "d") && inViewportElIndex + 1 <= headerLength - 1) {
       setOffsetX(offsetX + - currentElWidth);
       setInViewportElIndex(inViewportElIndex + 1);
 
