@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import PrimaryBtn from './PrimaryBtn';
 
-function ProjectDetailsCard({ id, setSelectedId, projects, is }) {
+function ProjectDetailsCard({ id, setSelectedId, projects }) {
 
     const project = projects.find(project => project.name === id);
     const { name, description, tech, img, type, btn, img2 } = project;

@@ -7,12 +7,12 @@ function SkillList({ listName, list }) {
 
 
     return (
-        <div className="w-[90vw] h-full md:w-[80vw] text-sm sm:text-lg  md:p-10 md:text-lg text-center bg-white  bg-opacity-10 text-gray-300">
+        <div className="h-full text-sm text-center text-gray-300 bg-white sm:text-lg md:p-10 md:text-lg bg-opacity-10">
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="w-full p-1 text-lg font-bold border-b-2 border-gray-300 md:mb-5 md:p-2 sm:text-xl md:text-2xl">{listName}</motion.div>
+                className="w-full p-1 text-lg font-bold border-b-2 border-gray-300 md:mb-5 md:p-8 sm:text-xl md:text-2xl">{listName}</motion.div>
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -29,9 +29,9 @@ function SkillList({ listName, list }) {
                                         whileInView={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1 + 1 }}
                                         viewport={{ once: true }}
-                                        className="flex flex-row m-2 space-x-2 md:m-3" key={index}>
-                                        <Icon className="w-6 h-6 md:h-10 md:w-10" icon={item.iconName} />
-                                        <span>{item.skill}</span>
+                                        className="flex flex-row m-2 space-x-2 text-center align-middle" key={index}>
+                                        <Icon className="w-4 h-4 md:h-8 md:w-8 " icon={item.iconName} />
+                                        <p className='w-4 h-4 md:h-8 md:w-8'>{item.skill}</p>
                                     </motion.div>
                                 )
                             }
@@ -48,9 +48,9 @@ function SkillList({ listName, list }) {
                                         whileInView={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1 + 1 }}
                                         viewport={{ once: true }}
-                                        className="flex flex-row m-2 space-x-2 md:m-3" key={index}>
-                                        <Icon className="w-6 h-6 md:h-10 md:w-10" icon={item.iconName} />
-                                        <span>{item.skill}</span>
+                                        className="flex flex-row m-2 space-x-2 text-center align-middle" key={index}>
+                                        <Icon className="w-4 h-4 md:h-8 md:w-8" icon={item.iconName} />
+                                        <p className='w-4 h-4 md:h-8 md:w-8'>{item.skill}</p>
                                     </motion.div>
                                 )
                             }

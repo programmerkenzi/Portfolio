@@ -27,7 +27,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             onClick={() => onClick(name)}
             layoutId={name}
             whileInView={{ opacity: [0, 1] }}
-            animate={{ minHeight: '40vh', maxHeight: `${selectedOnSmallScreen && !isNotSmallScreen ? '100vh' : !isNotSmallScreen ? '60vh' : isNotSmallScreen ? '45vh' : '100%'}` }}
+            animate={{ height: `${selectedOnSmallScreen && !isNotSmallScreen ? '100vh' : !isNotSmallScreen ? '60vh' : isNotSmallScreen ? '45vh' : '50vh'}` }}
             viewport={{ once: true }}
         >
 
@@ -43,7 +43,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             </motion.div>
 
 
-            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-2 ' : 'row-span-1 p-2 md:p-5'}   w-full     md:h-[35%] lg:h-1/2 `}>
+            <div className={`flex flex-col ${selectedOnSmallScreen && !isNotSmallScreen ? 'row-span-3 ' : 'row-span-1 p-2 md:p-5'}   w-full     md:h-[35%] lg:h-1/2 `}>
                 {!selectedOnSmallScreen ?
                     <div className='m-auto'>
                         <p className="mb-2 font-semibold text-center text-white text-md sm:text-lg md:text-xl md:mb-5 lg:text-2xl ">{name}</p>

@@ -13,7 +13,7 @@ const projects = [{
     type: 'mobile',
     img: '/images/chatApp-1.png',
     img2: '/images/chatApp-2.png',
-    btn: [{ title: 'Download', url: '/apk/chat-app.apk' },]
+    btn: [{ title: 'Download', url: '/apk/chat-app.apk' }, { title: "Frontend Code", url: "https://github.com/programmerkenzi/chat-app-reactnative.git" }, { title: "Backend Code", url: "https://github.com/programmerkenzi/chat-app-server-express.git" }]
 }, {
     name: 'Airbnb Clone',
     description: 'This is a responsive website that clone from airbnb website. ',
@@ -21,7 +21,7 @@ const projects = [{
     type: 'web',
     img: '/images/airbnb-clone-1.png',
     img2: '/images/airbnb-clone-2.png',
-    btn: [{ title: 'View', url: 'https://airbnb-clone-ten-eosin.vercel.app' },]
+    btn: [{ title: 'View', url: 'https://airbnb-clone-ten-eosin.vercel.app' }, { title: "Code", url: "https://github.com/programmerkenzi/airbnb-clone.git" }]
 }, {
     name: 'Uber Clone',
     description: ' This is a mobile app that clone from uber app, download the apk give it a try and have fun!',
@@ -29,7 +29,9 @@ const projects = [{
     type: 'mobile',
     img: '/images/uber-clone-1.png',
     img2: '/images/uber-clone-2.png',
-    btn: [{ title: 'Download', url: '/apk/uber-clone.apk' },]
+    btn: [{ title: 'Download', url: '/apk/uber-clone.apk' }, {
+        title: "Code", url: "https://github.com/programmerkenzi/uber-clone.git"
+    }]
 
 }, {
     name: 'Metaverse Chat App',
@@ -37,7 +39,7 @@ const projects = [{
     tech: 'NextJs, Moralis',
     img: '/images/metaverse-chat-1.png',
     img2: '/images/metaverse-chat-2.png',
-    btn: [{ title: 'View', url: 'https://metaverse-challenge-two-lemon.vercel.app' },]
+    btn: [{ title: 'View', url: 'https://metaverse-challenge-two-lemon.vercel.app' }, { title: "Code", url: "https://github.com/programmerkenzi/metaverse-challenge.git" }]
 },]
 
 function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
@@ -67,7 +69,7 @@ function Projects({ isBigScreen, setInViewportElIndex, screenWidth }) {
 
             </AnimatePresence>
 
-        </AnimateSharedLayout  >
+        </AnimateSharedLayout >
     )
 }
 
