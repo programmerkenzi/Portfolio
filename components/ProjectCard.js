@@ -4,7 +4,7 @@ import PrimaryBtn from './PrimaryBtn';
 
 
 function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, isNotSmallScreen }) {
-    const [isHover, setIsHover] = useState(false)
+    const [ isHover, setIsHover ] = useState(false)
     const { name, description, tech, img, img2, btn, type, loginInfo } = project;
     const selectedOnSmallScreen = !isBigScreen && selectedId === name;
 
@@ -26,8 +26,8 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
             onHoverEnd={() => setIsHover(false)}
             onClick={() => onClick(name)}
             layoutId={name}
-            whileInView={{ opacity: [0, 1] }}
-            animate={{ height: `${selectedOnSmallScreen && !isNotSmallScreen ? '100vh' : !isNotSmallScreen ? '60vh' : isNotSmallScreen ? '45vh' : '50vh'}` }}
+            whileInView={{ opacity: [ 0, 1 ] }}
+            animate={{ height: `${selectedOnSmallScreen && !isNotSmallScreen ? '800px' : !isNotSmallScreen ? '60vh' : isNotSmallScreen ? '45vh' : '50vh'}` }}
             viewport={{ once: true }}
         >
 
@@ -81,7 +81,7 @@ function ProjectCard({ project, index, selectedId, setSelectedId, isBigScreen, i
                         {/* btn */}
                         <div className="z-50 flex flex-row items-center justify-center w-full space-x-6 h-1/5 md:mt-8 md:space-x-8 ">
 
-                            {btn.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} />)}
+                            {btn?.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} />)}
                         </div>
                     </div>
                 }

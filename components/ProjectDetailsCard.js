@@ -51,7 +51,7 @@ function ProjectDetailsCard({ id, setSelectedId, projects }) {
                         {/* btn */}
 
 
-                        {btn.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} name={name} />)}
+                        {btn?.map((item, index) => <PrimaryBtn key={index} title={item.title} link={item.url} name={name} />)}
 
                     </div>
                 </motion.div>
